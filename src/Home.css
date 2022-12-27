@@ -1,4 +1,17 @@
 .home__banner {
   width: 100%;
+  margin-bottom: -75px;
   z-index: -1;
+  mask-image: linear-gradient(black, transparent);
+}
+.home {
+  display: flex;
+  justify-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  max-width: 1500px;
+}
+.home__row {
+  display: flex;
+  z-index: 1;
 }
