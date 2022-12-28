@@ -1,0 +1,32 @@
+.Item {
+  display: flex;
+  margin: 15px;
+  padding: 15px;
+  flex-direction: column;
+  background-color: white;
+  border: 1px solid #eee;
+  border-bottom: 2px solid rgb(205, 203, 203);
+}
+.Item > img {
+  width: 100%;
+  margin-bottom: 10px;
+}
+.to__cart {
+  background-color: #ffd814;
+  border-color: #fcd200;
+  border-radius: 8px;
+  padding: 8px;
+  font-size: 12px;
+}
+.to__cart:hover {
+  background-color: #e6c41fe6;
+}
+.Item__info {
+  margin-bottom: 20px;
+}
+.Item__price {
+  padding: 5px;
+}
+.Item__stars {
+  display: flex;
+}
