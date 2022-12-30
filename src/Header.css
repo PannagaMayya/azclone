@@ -6,16 +6,21 @@
   position: sticky;
   top: 0;
   z-index: 100;
+  min-width: 1000px;
 }
 .header__search {
   display: flex;
-  flex: 1;
   align-items: center;
+  flex: 1;
 }
-.header__logo {
+
+.header__logo > img {
   width: 100px;
   margin: 0 20px;
   margin-top: 15px;
+}
+.header__logo:hover {
+  border: 1px solid white;
 }
 .header__search_inp {
   height: 30px;
@@ -26,10 +31,11 @@
 .header__search_select {
   padding: 5px;
   height: 40px;
-  width: 8%;
+  width: 48px;
   color: #1e1e1ecb;
   background-color: #e6e6e6;
   border-radius: 4px 0px 0px 4px;
+  flex-shrink: 0;
 }
 .header__search_select:hover {
   color: #060606dd;
@@ -57,6 +63,7 @@
 .header__optionline1 {
   font-size: 12px;
   font-weight: 500;
+  flex-basis: 50%;
 }
 .header__optionline2 {
   font-size: 14px;
