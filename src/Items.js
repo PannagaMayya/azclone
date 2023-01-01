@@ -17,6 +17,7 @@ function Items() {
         <div className="Items__right">
           <div className="Items__rightrow">
             <Item
+              id="2"
               title="Product 2"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={2}
@@ -24,6 +25,7 @@ function Items() {
               origprice={440}
             />
             <Item
+              id="3"
               title="Product 3"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={3}
@@ -31,6 +33,7 @@ function Items() {
               origprice={840}
             />
             <Item
+              id="4"
               title="Product 4"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={4}
@@ -40,6 +43,7 @@ function Items() {
           </div>
           <div className="Items__rightrow">
             <Item
+              id="1"
               title="Product 1"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={5}
@@ -47,14 +51,16 @@ function Items() {
               origprice={380}
             />
             <Item
-              title="Product 2"
+              id="5"
+              title="Product 5"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={2}
               price={399}
               origprice={410}
             />
             <Item
-              title="Product 3"
+              id="6"
+              title="Product 6"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71hP1JEHDFL._AC_UL480_QL65_.jpg"
               star={3}
               price={699}

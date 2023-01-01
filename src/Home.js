@@ -35,8 +35,6 @@ function Home() {
             linkText="See more"
             link="www.google.com"
           />
-        </div>
-        <div className="home__row">
           <Product
             heading="Easy returns"
             imageUrl="https://images-na.ssl-images-amazon.com/images/G/01/AmazonExports/Fuji/2020/May/Dashboard/Fuji_Dash_Returns_2x._SY608_CB432774709_.jpg"

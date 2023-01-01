@@ -1,7 +1,24 @@
 import React from "react";
 import "./Item.css";
 import Rating from "@mui/material/Rating";
-function Item({ title, image, star, price, origprice }) {
+import { priceconvertInd } from "./StateHandler/priceconvertInd";
+import { useStateValue } from "./StateHandler/Stateprovider";
+function Item({ id, title, image, star, price, origprice }) {
+  // eslint-disable-next-line
+  const [state, dispatch] = useStateValue();
+  const addToCart = () => {
+    dispatch({
+      type: "ADD_TO_CART",
+      item: {
+        id: id,
+        title: title,
+        image: image,
+        star: star,
+        price: price,
+        origprice: origprice,
+      },
+    });
+  };
   return (
     <div className="Item">
       <img src={image} alt={title}></img>
@@ -13,8 +30,10 @@ function Item({ title, image, star, price, origprice }) {
         </p>
         <p className="Item__price">
           <small>₹ </small>
-          <strong>{price} </strong>
-          <small style={{ textDecoration: "line-through" }}>₹{origprice}</small>
+          <strong>{priceconvertInd(price)} </strong>
+          <small style={{ textDecoration: "line-through" }}>
+            ₹{priceconvertInd(origprice)}
+          </small>
           <small>
             {" "}
             ({Math.trunc(((origprice - price) / origprice) * 100)}% off)
@@ -22,7 +41,9 @@ function Item({ title, image, star, price, origprice }) {
         </p>
       </div>
       <div className="Item__add">
-        <button className="to__cart">Add to Cart</button>
+        <button className="to__cart" onClick={addToCart}>
+          Add to Cart
+        </button>
       </div>
     </div>
   );

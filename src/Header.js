@@ -3,9 +3,12 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import { useStateValue } from "./StateHandler/Stateprovider";
 import { Link } from "react-router-dom";
 
 function Header() {
+  // eslint-disable-next-line
+  const [state, dispatch] = useStateValue();
   return (
     <div className="header">
       <Link to="/">
@@ -16,10 +19,19 @@ function Header() {
           ></img>
         </div>
       </Link>
-      <LocationOnIcon className="header__locationzone" />
-      <div className="header__option" style={{ marginLeft: "0px" }}>
-        <span className="header__optionline1">Hello</span>
-        <span className="header__optionline2">Select Your address</span>
+      <div className="header__child">
+        <div className="header__option">
+          <span
+            className="header__optionline1"
+            style={{ marginLeft: "25px", marginBottom: "-2px" }}
+          >
+            Hello
+          </span>
+          <span className="header__optionline2">
+            <LocationOnIcon className="header__locationzone" />
+            Select Your address
+          </span>
+        </div>
       </div>
       <div className="header__search">
         <select className="header__search_select" value="All">
@@ -32,10 +44,6 @@ function Header() {
       </div>
       <div className="header__child">
         <div className="header__option">
-          <span className="header__optionline1"></span>
-          <span className="header__optionline2">EN</span>
-        </div>
-        <div className="header__option">
           <span className="header__optionline1">Hello, sign in</span>
           <span className="header__optionline2">Account & Lists</span>
         </div>
@@ -47,7 +55,7 @@ function Header() {
           <div className="header__cart">
             <ShoppingCartIcon className="header__shoppingcartlogo" />
             <span className="header__optionline2 header__shoppingtemcount">
-              0
+              {state.cart?.reduce((total, cur) => total + cur.quantity, 0)}
             </span>
           </div>
         </Link>
