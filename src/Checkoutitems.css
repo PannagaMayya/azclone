@@ -13,10 +13,18 @@
   width: 170px;
   height: 200px;
 }
-.checkout__items_left_actions > div {
-  padding-right: 10px;
-  margin-right: 10px;
+.checkout__itemsdelete,
+.checkout__itemssave {
+  padding: 8px;
   border-right: 1px solid #ddd;
+  color: #246b77;
+  text-align: center;
+}
+.checkout__itemsdelete:hover,
+.checkout__itemssave:hover {
+  color: #dfab3b;
+  text-decoration: underline;
+  cursor: pointer;
 }
 .checkout__itemsquantity {
   margin: 2px;
@@ -40,5 +48,11 @@
 .checkout__itemsquantity > select {
   border: none;
   background-color: #f0f2f2;
-  width: 40px;
+  width: auto;
+}
+.checkout__itemsquantity > select:hover {
+  cursor: pointer;
+}
+.checkout__itemsquantity > select > option {
+  background-color: #d5d9d9;
 }

@@ -19,6 +19,17 @@ const reducer = (state, action) => {
           cart: [...state.cart, { ...action.item, quantity: 1 }],
         };
       }
+    case "REMOVE_FROM_CART":
+      return { ...state, cart: state.cart.filter((i) => i.id !== action.id) };
+    case "UPDATE_QUANTITY":
+      return {
+        ...state,
+        cart: state.cart.map((cur) =>
+          cur["id"] === action.id
+            ? { ...cur, quantity: parseInt(action.quantity) }
+            : cur
+        ),
+      };
     default:
       return state;
   }

@@ -23,7 +23,7 @@ function Header() {
         <div className="header__option">
           <span
             className="header__optionline1"
-            style={{ marginLeft: "25px", marginBottom: "-2px" }}
+            style={{ marginLeft: "25px", marginBottom: "-8px" }}
           >
             Hello
           </span>
@@ -43,10 +43,12 @@ function Header() {
         <SearchIcon className="header__searchlogo" />
       </div>
       <div className="header__child">
-        <div className="header__option">
-          <span className="header__optionline1">Hello, sign in</span>
-          <span className="header__optionline2">Account & Lists</span>
-        </div>
+        <Link to="/login" style={{ textDecoration: "none" }}>
+          <div className="header__option">
+            <span className="header__optionline1">Hello, sign in</span>
+            <span className="header__optionline2">Account & Lists</span>
+          </div>
+        </Link>
         <div className="header__option">
           <span className="header__optionline1">Returns</span>
           <span className="header__optionline2">& Orders</span>

@@ -15,4 +15,8 @@
   background-color: #ffd814;
   border: none;
   border-radius: 8px;
+  cursor: pointer;
+}
+.checkout__proceedtobuy:hover {
+  background-color: #e9c513;
 }
