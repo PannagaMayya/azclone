@@ -1,3 +1,9 @@
+import { initializeApp } from "firebase/app";
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  updateProfile,
+} from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyB5k_gPXhQOGEvQydYMuhL2Wgy1UBNOt_o",
@@ -8,3 +14,10 @@ const firebaseConfig = {
   appId: "1:231907126748:web:e9a64b2c5d3f572965f319",
   measurementId: "G-DCHK0EYPJB",
 };
+const app = initializeApp(firebaseConfig);
+//const db = app.firestore();
+const auth = getAuth(app);
+const reg = createUserWithEmailAndPassword;
+const updatename = updateProfile;
+
+export { auth, reg, updatename };
