@@ -63,7 +63,54 @@
   padding: 4px;
   color: white;
 }
-
+.divpop:hover .popover {
+  display: flex;
+}
+.popover {
+  position: absolute;
+  background-color: #fff;
+  top: 55px;
+  right: 50px;
+  flex-direction: column;
+  align-items: center;
+  height: 400px;
+  width: 400px;
+  z-index: 10;
+  display: none;
+  border-radius: 10px;
+}
+.popover:hover {
+  display: flex;
+}
+.popover > div {
+  border-bottom: 1px solid #ddd;
+}
+.popover__button {
+  background-color: #fcd164;
+  border: 1px solid #907b48;
+  margin: 25px 0px;
+  width: 150px;
+  height: 25px;
+}
+.popover__button:hover {
+  background-color: #f4c346;
+  cursor: pointer;
+}
+.popover__area {
+  display: flex;
+  color: black;
+}
+.popover__area > div {
+  float: left;
+  margin: 10px 10px;
+}
+.popover__area > div > p {
+  margin: 8px 0px;
+}
+.popover__area > div > p:hover {
+  color: #dfab3b;
+  text-decoration: underline;
+}
 .header__optionline1 {
   font-size: 12px;
   font-weight: 500;

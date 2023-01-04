@@ -3,6 +3,9 @@ import {
   getAuth,
   createUserWithEmailAndPassword,
   updateProfile,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut,
 } from "firebase/auth";
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -19,5 +22,7 @@ const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const reg = createUserWithEmailAndPassword;
 const updatename = updateProfile;
-
-export { auth, reg, updatename };
+const signin = signInWithEmailAndPassword;
+const manageuser = onAuthStateChanged;
+const signout = signOut;
+export { auth, reg, updatename, signin, manageuser, signout };

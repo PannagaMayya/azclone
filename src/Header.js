@@ -1,14 +1,26 @@
-import React from "react";
+import React, { useState } from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { Link } from "react-router-dom";
+import { auth, signout } from "./appFirebase/firebase";
 
 function Header() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
+  const [search, setSearch] = useState("");
+  const [selectCat, setSelectCat] = useState("All");
+  const logout = () => {
+    signout(auth)
+      .then(() => {
+        console.log("Sign out Successfull");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div className="header">
       <Link to="/">
@@ -34,21 +46,61 @@ function Header() {
         </div>
       </div>
       <div className="header__search">
-        <select className="header__search_select" value="All">
+        <select
+          className="header__search_select"
+          value={selectCat}
+          onChange={(e) => setSelectCat(e.target.value)}
+        >
           <option value="All">All</option>
           <option value="Alexa Skills">Alexa Skills</option>
           <option value="Gift Cards">Gift Cards</option>
         </select>
-        <input className="header__search_inp" type="text" />
+        <input
+          className="header__search_inp"
+          type="text"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
         <SearchIcon className="header__searchlogo" />
       </div>
       <div className="header__child">
-        <Link to="/login" style={{ textDecoration: "none" }}>
-          <div className="header__option">
-            <span className="header__optionline1">Hello, sign in</span>
-            <span className="header__optionline2">Account & Lists</span>
+        <div className="header__option divpop">
+          <span className="header__optionline1 ">
+            {state.user
+              ? "Hello, " + state.user.split(" ")[0]
+              : "Hello, sign in"}
+          </span>
+          <span className="header__optionline2">Account & Lists</span>
+          <div className="popover">
+            <div>
+              <Link to={!state.user && "/login"}>
+                <button className="popover__button" onClick={logout}>
+                  {state.user ? "Sign Out" : "Sign In"}
+                </button>
+              </Link>
+            </div>
+            <div className="popover__area">
+              <div className="popover__left">
+                <h3>Your Account</h3>
+                <p>Your Account</p>
+                <p>Your Orders</p>
+                <p>Your Wish List</p>
+                <p>Your Recommendations</p>
+                <p>Your Prime Membership</p>
+                <p>Your Prime Video</p>
+              </div>
+              <div className="popover__right">
+                <h3>Your Orders</h3>
+                <p>Create a Wish List</p>
+                <p>Wish from Any Website</p>
+                <p>Baby Wishlist</p>
+                <p>Discover Your Style</p>
+                <p>Explore Showroom</p>
+              </div>
+            </div>
           </div>
-        </Link>
+        </div>
+
         <div className="header__option">
           <span className="header__optionline1">Returns</span>
           <span className="header__optionline2">& Orders</span>

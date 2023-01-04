@@ -1,12 +1,33 @@
 import React, { useState } from "react";
 import "./Login.css";
-import { Link } from "react-router-dom";
+import Loading from "./Loading";
+import ErrorIcon from "@mui/icons-material/Error";
+import { Link, useNavigate } from "react-router-dom";
+import { auth, signin } from "./appFirebase/firebase";
 function Login() {
+  const history = useNavigate();
+  const [isLoading, setIsLoading] = useState(false);
+  const [err, setErr] = useState(false);
   const [login, setLogin] = useState({ email: "", password: "" });
   const Signin = ({ email, password }) => {
-    console.log(email, password);
+    setErr(false);
+    setIsLoading(true);
+    signin(auth, email, password)
+      .then((info) => {
+        console.log(info);
+        setIsLoading(true);
+        history("/");
+        setIsLoading(false);
+      })
+      .catch((err) => {
+        setIsLoading(false);
+        setLogin({ ...login, password: "" });
+        setErr(true);
+      });
   };
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <div className="login">
       <Link to="/" className="login__logo">
         <img
@@ -14,6 +35,13 @@ function Login() {
           alt="amazonlogo"
         ></img>
       </Link>
+      <div
+        className="login_error"
+        style={err ? { color: "red", display: "flex" } : { display: "none" }}
+      >
+        <ErrorIcon />
+        Incorrect Login Details
+      </div>
       <div className="login__container">
         <h1 style={{ fontWeight: 450 }}>Sign In</h1>
         <form

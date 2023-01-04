@@ -2,31 +2,35 @@ import React, { useState } from "react";
 import "./Signup.css";
 import { Link, useNavigate } from "react-router-dom";
 import Loading from "./Loading";
+import ErrorIcon from "@mui/icons-material/Error";
 import { auth, reg, updatename } from "./appFirebase/firebase";
 function Signup() {
   const history = useNavigate();
+  const [err, setErr] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [signup, setSignup] = useState({ name: "", email: "", password: "" });
   const Signup = ({ name, email, password }) => {
-    setIsLoading(true);
+    setErr(false);
     reg(auth, email, password)
       .then((info) => {
         console.log(info);
+        setIsLoading(true);
         updatename(info.user, {
           displayName: name,
         })
           .then(() => {
-            setIsLoading(false);
             history("/");
+            setIsLoading(false);
           })
           .catch((e) => {
-            alert(e.message);
             setIsLoading(false);
+            setErr(true);
+            setSignup({ name: "", email: "", password: "" });
           });
       })
       .catch((err) => {
-        alert(err.message);
-        setIsLoading(false);
+        setErr(true);
+        setSignup({ ...signup, email: "", password: "" });
       });
   };
   return isLoading ? (
@@ -39,6 +43,13 @@ function Signup() {
           alt="amazonlogo"
         ></img>
       </Link>
+      <div
+        className="login_error"
+        style={err ? { color: "red", display: "flex" } : { display: "none" }}
+      >
+        <ErrorIcon />
+        There was a problem, please try with different email
+      </div>
       <div className="signup__container">
         <h1 style={{ fontWeight: 450 }}>Create Account</h1>
         <form

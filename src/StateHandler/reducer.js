@@ -1,5 +1,6 @@
 export const initialState = {
   cart: [],
+  user: null,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -30,6 +31,8 @@ const reducer = (state, action) => {
             : cur
         ),
       };
+    case "SET_USER":
+      return { ...state, user: action.user };
     default:
       return state;
   }
