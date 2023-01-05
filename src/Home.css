@@ -1,8 +1,16 @@
+.banner {
+  overflow: hidden;
+  margin-bottom: -250px;
+  mask-image: linear-gradient(black, transparent);
+}
 .home__banner {
   width: 100%;
-  margin-bottom: -75px;
+  height: fit-content;
+}
+.banner_carousel {
+  display: inline-flex;
+  transition: 0.5s ease;
   z-index: -1;
-  mask-image: linear-gradient(black, transparent);
 }
 .home {
   justify-content: center;

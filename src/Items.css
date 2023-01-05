@@ -7,11 +7,20 @@
 }
 .Items__left {
   float: left;
+  display: flex;
+  flex-direction: column;
   margin: 10px;
   border-right: 2px solid #ddd;
   padding: 10px;
   width: 15%;
   background-color: white;
+}
+.Items__left > p {
+  margin: 6px 0;
+  cursor: pointer;
+}
+.Items__left > p:hover {
+  color: #dfab3b;
 }
 .Items__right {
   width: 85%;

@@ -7,18 +7,19 @@
   border: none;
   padding: 14px;
   max-width: 270px;
-  height: 400px;
-  max-height: 410px;
+  height: 370px;
+  max-height: 400px;
   background-color: white;
   z-index: 1;
 }
 .product__info {
   width: 100%;
   margin-left: 10px;
+  margin-bottom: 10px;
 }
 .product__head {
   padding: 10px 0px;
-  margin: 10px 0px;
+  margin: 0px;
 }
 
 .product__image_link > img {
@@ -29,7 +30,7 @@
 }
 .product__Link {
   width: 100%;
-  margin: 12px 0px;
+  margin: 14px 0px;
   color: #246b77;
   text-decoration: none;
   font-size: small;

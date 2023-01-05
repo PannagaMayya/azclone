@@ -1,15 +1,41 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Product from "./Product";
 function Home() {
+  const [ind, setInd] = useState(0);
+  useEffect(() => {
+    let tmid = setTimeout(() => {
+      setInd(ind === 2 ? 0 : ind + 1);
+    }, 5000);
+    return () => {
+      clearTimeout(tmid);
+    };
+  });
   return (
     <div className="home">
       <div className="home__container">
-        <img
-          src="https://images-na.ssl-images-amazon.com/images/G/15/digital/video/merch/Other/BRND_MTH21_SADLPDesktop_1453x363_Final_nolocale_PVD7436_Canada.jpg"
-          alt="banner"
-          className="home__banner"
-        ></img>
+        <div className="banner">
+          <div
+            className="banner_carousel"
+            style={{ transform: "translateX(-" + ind * 100 + "%)" }}
+          >
+            <img
+              src="https://images-na.ssl-images-amazon.com/images/G/15/digital/video/merch/Other/BRND_MTH21_SADLPDesktop_1453x363_Final_nolocale_PVD7436_Canada.jpg"
+              alt="banner1"
+              className="home__banner"
+            ></img>
+            <img
+              src="https://m.media-amazon.com/images/I/61GnAucagBL._SX3000_.png"
+              alt="banner2"
+              className="home__banner"
+            ></img>
+            <img
+              src="https://m.media-amazon.com/images/I/61xZ8XpT9BL._SX3000_.jpg"
+              alt="banner3"
+              className="home__banner"
+            ></img>
+          </div>
+        </div>
         <div className="home__row">
           <Product
             heading="Health & Personal Care"

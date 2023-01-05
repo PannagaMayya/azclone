@@ -12,6 +12,7 @@
 .checkout__items_left_image > img {
   width: 170px;
   height: 200px;
+  object-fit: contain;
 }
 .checkout__itemsdelete,
 .checkout__itemssave {

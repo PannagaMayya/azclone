@@ -33,6 +33,8 @@ const reducer = (state, action) => {
       };
     case "SET_USER":
       return { ...state, user: action.user };
+    case "SIGN_OUT":
+      return { ...action.stateclear };
     default:
       return state;
   }

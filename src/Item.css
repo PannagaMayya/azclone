@@ -1,14 +1,18 @@
 .Item {
   display: flex;
-  margin: 15px;
+  margin: 5px;
+  max-width: 300px;
   padding: 15px;
   flex-direction: column;
+  align-items: center;
   background-color: white;
   border: 1px solid #eee;
   border-bottom: 2px solid rgb(205, 203, 203);
 }
 .Item > img {
-  width: 100%;
+  width: 70%;
+  height: 60%;
+  object-fit: contain;
   margin-bottom: 10px;
 }
 .to__cart {
@@ -24,6 +28,10 @@
 }
 .Item__info {
   margin-bottom: 20px;
+}
+.Item__title:hover {
+  color: #dfab3b;
+  cursor: pointer;
 }
 .Item__price {
   padding: 5px;

@@ -4,11 +4,11 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { useStateValue } from "./StateHandler/Stateprovider";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { auth, signout } from "./appFirebase/firebase";
 
 function Header() {
-  // eslint-disable-next-line
+  const history = useNavigate();
   const [state, dispatch] = useStateValue();
   const [search, setSearch] = useState("");
   const [selectCat, setSelectCat] = useState("All");
@@ -16,9 +16,11 @@ function Header() {
     signout(auth)
       .then(() => {
         console.log("Sign out Successfull");
+        history("/login");
+        dispatch({ type: "SIGN_OUT", stateclear: { cart: [], user: null } });
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(error.message);
       });
   };
   return (
@@ -67,14 +69,17 @@ function Header() {
         <div className="header__option divpop">
           <span className="header__optionline1 ">
             {state.user
-              ? "Hello, " + state.user.split(" ")[0]
+              ? "Hello, " + state.user?.displayName.split(" ")[0]
               : "Hello, sign in"}
           </span>
           <span className="header__optionline2">Account & Lists</span>
           <div className="popover">
             <div>
               <Link to={!state.user && "/login"}>
-                <button className="popover__button" onClick={logout}>
+                <button
+                  className="popover__button"
+                  onClick={state.user ? logout : () => {}}
+                >
                   {state.user ? "Sign Out" : "Sign In"}
                 </button>
               </Link>

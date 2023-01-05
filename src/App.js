@@ -16,12 +16,12 @@ function App() {
     manageuser(auth, (user) => {
       if (user) {
         console.log(user.displayName);
-        dispatch({ type: "SET_USER", user: user.displayName });
+        dispatch({ type: "SET_USER", user: user });
       } else {
         dispatch({ type: "SET_USER", user: null });
       }
     });
-  }, []);
+  }, [dispatch]);
   return (
     <BrowserRouter>
       <div className="app">
