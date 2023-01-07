@@ -57,3 +57,6 @@
 .checkout__itemsquantity > select > option {
   background-color: #d5d9d9;
 }
+.checkout__items_right {
+  white-space: nowrap;
+}

@@ -6,6 +6,7 @@ import Checkout from "./Checkout";
 import Items from "./Items";
 import Login from "./Login";
 import Signup from "./Signup";
+import Payment from "./Payment";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { auth, manageuser } from "./appFirebase/firebase";
@@ -28,6 +29,7 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
+          <Route path="/payment" element={<Payment />} />
           <Route
             path="/items"
             element={

@@ -23,7 +23,7 @@ function Checkoutitems({ id, image, title, quantity, price }) {
         <div className="checkout__items_left_info">
           <h3>{title}</h3>
           <small>In stock</small>
-          <small>Eligible for FREE Shipping</small>
+          <small>FREE Shipping is not available</small>
           <div className="checkout__items_left_actions">
             <div className="checkout__itemsquantity">
               <span>Qty: </span>
@@ -54,7 +54,7 @@ function Checkoutitems({ id, image, title, quantity, price }) {
       </div>
       <div className="checkout__items_right">
         <h4>
-          <small>₹ </small>
+          <small>₹</small>
           {price}
         </h4>
       </div>
