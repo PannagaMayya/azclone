@@ -1,6 +1,7 @@
 export const initialState = {
   cart: [],
   user: null,
+  address: null,
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -35,6 +36,8 @@ const reducer = (state, action) => {
       return { ...state, user: action.user };
     case "SIGN_OUT":
       return { ...action.stateclear };
+    case "SET_ADDRESS":
+      return { ...state, address: action.address };
     default:
       return state;
   }

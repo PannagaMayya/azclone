@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Payment.css";
 import Checkoutitems from "./Checkoutitems";
@@ -7,11 +7,20 @@ import { priceconvertInd } from "./StateHandler/priceconvertInd";
 function Payment() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
+  const [isFormEdit, setIsFormEdit] = useState(state.address ? false : true);
+  const [address, setAddress] = useState(
+    state.address
+      ? state.address
+      : { fullname: "", houseno: "", city: "", state: "", phnumber: "" }
+  );
   const disbledstyle = { opacity: 0.5, pointerEvents: "none" };
   const totalcost = state.cart?.reduce(
     (total, cur) => total + cur.quantity * cur.price,
     0
   );
+  const handleChange = (e) => {
+    setAddress({ ...address, [e.target.name]: e.target.value });
+  };
   return (
     <div className="payment">
       <div className="payment__header">
@@ -34,9 +43,95 @@ function Payment() {
             <div className="payment__left__content">
               <p>{state.user?.displayName}</p>
               <p>{state.user?.email}</p>
+              <form
+                id="address_form"
+                onSubmit={(e) => {
+                  e.preventDefault();
+
+                  if (isFormEdit) {
+                    console.log("Dispatch" + isFormEdit);
+                    dispatch({ type: "SET_ADDRESS", address });
+                  }
+                  setIsFormEdit(!isFormEdit);
+                }}
+                className="address__form"
+              >
+                <fieldset disabled={!isFormEdit}>
+                  <label>
+                    <strong>Full name</strong>
+                  </label>
+                  <input
+                    type="text"
+                    minLength="3"
+                    maxLength="15"
+                    name="fullname"
+                    value={address.fullname}
+                    onChange={handleChange}
+                    required
+                  ></input>
+                  <label>
+                    <strong>
+                      Flat, House no., Building, Company, Apartment
+                    </strong>
+                  </label>
+                  <input
+                    type="text"
+                    minLength="3"
+                    maxLength="10"
+                    name="houseno"
+                    value={address.houseno}
+                    onChange={handleChange}
+                    required
+                  ></input>
+
+                  <label>
+                    <strong>Town/City</strong>
+                  </label>
+                  <input
+                    type="text"
+                    minLength="3"
+                    maxLength="15"
+                    name="city"
+                    value={address.city}
+                    onChange={handleChange}
+                    required
+                  ></input>
+
+                  <label>
+                    <strong>State</strong>
+                  </label>
+                  <input
+                    type="text"
+                    minLength="3"
+                    maxLength="15"
+                    name="state"
+                    value={address.state}
+                    onChange={handleChange}
+                    required
+                  ></input>
+
+                  <label>
+                    <strong>Phone Number</strong>
+                  </label>
+                  <input
+                    type="tel"
+                    name="phnumber"
+                    value={address.phnumber}
+                    onChange={handleChange}
+                    required
+                  ></input>
+                </fieldset>
+              </form>
+            </div>
+            <div className="payment__editsave">
+              <input
+                type="submit"
+                form="address_form"
+                value={!isFormEdit ? "Edit" : "Save"}
+              ></input>
             </div>
           </div>
-          <div className="payment__review" style={false ? {} : disbledstyle}>
+          <div className="payment__review">
             <div className="payment__left__title">
               <h3>2 Review order</h3>
             </div>
@@ -58,40 +153,37 @@ function Payment() {
               )}
             </div>
           </div>
-          <div className="payment__payment" style={false ? {} : disbledstyle}>
+          <div className="payment__payment">
             <div className="payment__left__title">
               <h3>3 Payment Method</h3>
             </div>
             <div className="payment__left__content">
               <label>
-                <input type="radio"></input>
+                <input type="radio" name="payment"></input>
                 Pay via CC
               </label>
 
               <label>
-                <input type="radio" disabled></input>
+                <input type="radio" name="payment" disabled></input>
                 Internet Banking
               </label>
 
               <label>
-                <input type="radio"></input>
+                <input type="radio" name="payment"></input>
                 Cash on Delivery
               </label>
             </div>
           </div>
         </div>
-        <div className="payment__right">
-          <div
-            className="order__summary__container"
-            style={false ? {} : disbledstyle}
-          >
+        <div className="payment__right" style={{ display: "none" }}>
+          <div className="order__summary__container">
             <div className="order__summary__top">
               <button className="payment__button">
                 Use this payment method
               </button>
               <small>
-                Choose a payment method to continue checking out. You'll still
-                have a chance to review your order
+                Choose a payment method to continue checking out. You can still
+                modify your order
               </small>
             </div>
             <div className="order__summary__bottom">

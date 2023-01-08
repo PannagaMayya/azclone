@@ -48,6 +48,26 @@
   padding: 5px;
   padding-right: 0;
 }
+.payment__editsave > input {
+  border: none;
+  background: none;
+  color: #246b77;
+  cursor: pointer;
+}
+.address__form > fieldset {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+  border: none;
+}
+.address__form > fieldset > input {
+  margin: 2px;
+  padding: 2px;
+}
+.payment__editsave > input:hover {
+  text-decoration: underline;
+}
 .payment__right {
   flex: 0.3;
 }
