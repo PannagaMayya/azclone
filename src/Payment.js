@@ -4,16 +4,21 @@ import "./Payment.css";
 import Checkoutitems from "./Checkoutitems";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { priceconvertInd } from "./StateHandler/priceconvertInd";
+import { CardElement, useStripe, useElements } from "@stripe/react-stripe-js";
 function Payment() {
+  const stripe = useStripe();
+  const elements = useElements();
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
   const [isFormEdit, setIsFormEdit] = useState(state.address ? false : true);
+  const [card, setCard] = useState(false);
+  let deliveryFee = state.cart?.length !== 0 ? 50 : 0;
   const [address, setAddress] = useState(
     state.address
       ? state.address
       : { fullname: "", houseno: "", city: "", state: "", phnumber: "" }
   );
-  const disbledstyle = { opacity: 0.5, pointerEvents: "none" };
+  const disabledstyle = { opacity: 0.5, pointerEvents: "none" };
   const totalcost = state.cart?.reduce(
     (total, cur) => total + cur.quantity * cur.price,
     0
@@ -21,6 +26,11 @@ function Payment() {
   const handleChange = (e) => {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
+  const handleFormPayment = (e) => {};
+  const onChangeValue = (e) => {
+    console.log(e.target.value);
+  };
+  const handleCard = (e) => {};
   return (
     <div className="payment">
       <div className="payment__header">
@@ -153,32 +163,45 @@ function Payment() {
               )}
             </div>
           </div>
-          <div className="payment__payment">
+          <div
+            className="payment__payment"
+            style={!isFormEdit && state.cart.length !== 0 ? {} : disabledstyle}
+          >
             <div className="payment__left__title">
               <h3>3 Payment Method</h3>
             </div>
             <div className="payment__left__content">
-              <label>
-                <input type="radio" name="payment"></input>
-                Pay via CC
-              </label>
+              <div className="payment__form" onChange={onChangeValue}>
+                <label>
+                  <input type="radio" value="CC" name="payment"></input>
+                  Pay via CC
+                </label>
 
-              <label>
-                <input type="radio" name="payment" disabled></input>
-                Internet Banking
-              </label>
+                <label>
+                  <input type="radio" name="payment" disabled></input>
+                  Internet Banking
+                </label>
 
-              <label>
-                <input type="radio" name="payment"></input>
-                Cash on Delivery
-              </label>
+                <label>
+                  <input type="radio" value="COD" name="payment"></input>
+                  Cash on Delivery
+                </label>
+                <div style={{ display: card ? "block" : "none" }}>
+                  <h4 style={{ marginBottom: "10px" }}>Card Details:</h4>
+                  <CardElement onChange={handleCard} />
+                </div>
+              </div>
             </div>
           </div>
         </div>
-        <div className="payment__right" style={{ display: "none" }}>
+        <div className="payment__right">
           <div className="order__summary__container">
             <div className="order__summary__top">
-              <button className="payment__button">
+              <button
+                className="payment__button"
+                disabled={!(!isFormEdit && state.cart.length)}
+                onClick={handleFormPayment}
+              >
                 Use this payment method
               </button>
               <small>
@@ -194,11 +217,11 @@ function Payment() {
               </span>
               <span>
                 <small>Delivery fee:</small>
-                <small>₹50.00</small>
+                <small>₹{deliveryFee}.00</small>
               </span>
               <span>
                 <small>Total:</small>
-                <small>₹{priceconvertInd(totalcost + 50)}</small>
+                <small>₹{priceconvertInd(totalcost + deliveryFee)}</small>
               </span>
 
               <span
@@ -210,7 +233,7 @@ function Payment() {
                 }}
               >
                 <h3>Order Total:</h3>
-                <h3>₹{priceconvertInd(totalcost + 50)}</h3>
+                <h3>₹{priceconvertInd(totalcost + deliveryFee)}</h3>
               </span>
             </div>
           </div>

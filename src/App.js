@@ -10,6 +10,11 @@ import Payment from "./Payment";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { auth, manageuser } from "./appFirebase/firebase";
+import { loadStripe } from "@stripe/stripe-js";
+import { Elements } from "@stripe/react-stripe-js";
+const stripePromise = loadStripe(
+  "pk_test_51MOPksSJ8ogpUCK4l6W3tOA3h8lkA6CI4B44yAG2eBPBp0tZhGRVbb5Q0QOcPoEn84NWS4d1QX7OKPYFCIslIHdw00pRamSW7o"
+);
 function App() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
@@ -29,7 +34,14 @@ function App() {
         <Routes>
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Signup />} />
-          <Route path="/payment" element={<Payment />} />
+          <Route
+            path="/payment"
+            element={
+              <Elements stripe={stripePromise}>
+                <Payment />
+              </Elements>
+            }
+          />
           <Route
             path="/items"
             element={

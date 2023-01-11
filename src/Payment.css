@@ -48,6 +48,18 @@
   padding: 5px;
   padding-right: 0;
 }
+.payment__form {
+  display: flex;
+  flex-direction: column;
+}
+.payment__form > label {
+  margin: 5px;
+  padding: 5px;
+}
+.payment__form > label > input {
+  margin: 5px;
+  padding: 5px;
+}
 .payment__editsave > input {
   border: none;
   background: none;
@@ -113,4 +125,7 @@
 }
 .payment__button:hover {
   background-color: #e9c513;
+}
+.payment__button:disabled {
+  pointer-events: none;
 }
