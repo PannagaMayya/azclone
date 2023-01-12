@@ -28,8 +28,8 @@ function Items() {
               title="Arpon Brand - Olicat Xxl Bean Bag Filled With Beans (Black)(Faux Leather)"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/71EvYTPqjQL._AC_UL480_FMwebp_QL65_.jpg"
               star={2}
-              price={399}
-              origprice={440}
+              price={840}
+              origprice={999}
             />
             <Item
               id="3"
@@ -54,8 +54,8 @@ function Items() {
               title="Hario Blocka 4G Mobile (Black, 1)"
               image="https://m.media-amazon.com/images/W/WEBP_402378-T2/images/I/41xqwHBCw1L._AC_UL480_FMwebp_QL65_.jpg"
               star={5}
-              price={360}
-              origprice={380}
+              price={8499}
+              origprice={10000}
             />
             <Item
               id="5"

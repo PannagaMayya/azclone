@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./Home.css";
 import Product from "./Product";
+import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
+import ArrowBackIosIcon from "@mui/icons-material/ArrowBackIos";
 function Home() {
   const [ind, setInd] = useState(0);
   useEffect(() => {
@@ -14,6 +16,11 @@ function Home() {
   return (
     <div className="home">
       <div className="home__container">
+        <ArrowForwardIosIcon
+          className="carosel__ArrowF"
+          sx={{ fontSize: 60 }}
+        />
+        <ArrowBackIosIcon className="carosel__ArrowB" sx={{ fontSize: 60 }} />
         <div className="banner">
           <div
             className="banner_carousel"
@@ -24,6 +31,7 @@ function Home() {
               alt="banner1"
               className="home__banner"
             ></img>
+
             <img
               src="https://m.media-amazon.com/images/I/61GnAucagBL._SX3000_.png"
               alt="banner2"

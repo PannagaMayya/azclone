@@ -25,3 +25,24 @@
   flex-flow: wrap;
   z-index: 1;
 }
+.carosel__ArrowF {
+  z-index: 3;
+  position: absolute;
+  top: 80px;
+  right: 10px;
+  color: black;
+  padding: 90px 12px;
+}
+.carosel__ArrowB {
+  z-index: 3;
+  position: absolute;
+  top: 80px;
+  left: 10px;
+  color: black;
+  padding: 90px 12px;
+}
+.carosel__ArrowF:hover,
+.carosel__ArrowB:hover {
+  outline: 1px solid #fdfdf5;
+  cursor: pointer;
+}
