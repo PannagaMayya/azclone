@@ -7,6 +7,8 @@ import Items from "./Items";
 import Login from "./Login";
 import Signup from "./Signup";
 import Payment from "./Payment";
+import NavigateComp from "./NavigateComp";
+import Myorders from "./Myorders";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { auth, manageuser } from "./appFirebase/firebase";
@@ -32,13 +34,29 @@ function App() {
     <BrowserRouter>
       <div className="app">
         <Routes>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Signup />} />
+          <Route
+            path="/login"
+            element={
+              <NavigateComp comp={<Login />} user={state.user ? true : false} />
+            }
+          />
+          <Route
+            path="/register"
+            element={
+              <NavigateComp
+                comp={<Signup />}
+                user={state.user ? true : false}
+              />
+            }
+          />
           <Route
             path="/payment"
             element={
               <Elements stripe={stripePromise}>
-                <Payment />
+                <NavigateComp
+                  comp={<Payment />}
+                  user={state.user ? false : true}
+                />
               </Elements>
             }
           />
@@ -57,6 +75,15 @@ function App() {
               <>
                 <Header />
                 <Checkout />
+              </>
+            }
+          />
+          <Route
+            path="/myorders/:id"
+            element={
+              <>
+                <Header />
+                <Myorders />
               </>
             }
           />

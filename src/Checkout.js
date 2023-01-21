@@ -51,6 +51,8 @@ function Checkout() {
               0
             )
           )}
+          redirecttologin={state.user ? false : true}
+          cartempty={state.cart?.length}
         />
       </div>
     </div>

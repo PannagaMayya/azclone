@@ -2,7 +2,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import "./Subtotal.css";
 
-function Subtotal({ itemcount, price }) {
+function Subtotal({ itemcount, price, redirecttologin, cartempty }) {
   const history = useNavigate();
   return (
     <div className="checkout__subtotal">
@@ -18,7 +18,13 @@ function Subtotal({ itemcount, price }) {
       </label>
       <button
         className="checkout__proceedtobuy"
-        onClick={() => history("/payment")}
+        onClick={() =>
+          redirecttologin
+            ? history("/login")
+            : cartempty
+            ? history("/payment")
+            : null
+        }
       >
         Proceed to Buy
       </button>

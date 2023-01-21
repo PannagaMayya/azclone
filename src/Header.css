@@ -130,6 +130,7 @@
   margin-left: 10px;
   margin-right: 10px;
   font-size: large;
+  text-decoration: none;
   color: coral;
 }
 .header__locationzone {

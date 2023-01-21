@@ -110,7 +110,7 @@ function Header() {
           <span className="header__optionline1">Returns</span>
           <span className="header__optionline2">& Orders</span>
         </div>
-        <Link to="/checkout">
+        <Link to="/checkout" style={{ textDecoration: "none" }}>
           <div className="header__cart">
             <ShoppingCartIcon className="header__shoppingcartlogo" />
             <span className="header__optionline2 header__shoppingtemcount">

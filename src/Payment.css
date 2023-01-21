@@ -1,6 +1,21 @@
 .payment {
   background-color: white;
   min-width: 1000px;
+  position: relative;
+}
+.payment_overlay {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(137, 131, 131, 0.5);
+  top: 0;
+  left: 0;
+}
+.loading_none {
+  display: none;
 }
 .payment__disabled {
   opacity: 0.5;
@@ -55,6 +70,8 @@
 .payment__form > label {
   margin: 5px;
   padding: 5px;
+  display: flex;
+  align-items: center;
 }
 .payment__form > label > input {
   margin: 5px;
@@ -89,6 +106,8 @@
   margin: 10px;
   padding: 10px;
   border: 1px solid #ddd;
+  position: sticky;
+  top: 10px;
 }
 .order__summary__top {
   border-bottom: 1px solid #ddd;

@@ -29,11 +29,12 @@
 }
 .checkout__itemsquantity {
   margin: 2px;
-  padding: 7px;
-  background-color: #f0f2f2;
+  padding: 4px;
+  background-color: #f1f7f7;
   border: 1px solid #d5d9d9;
   box-shadow: 1px 1px 1px 1px #71a5d3;
   border-radius: 8px;
+  font-size: small;
 }
 .checkout__items_left_info {
   display: flex;

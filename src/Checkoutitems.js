@@ -38,7 +38,9 @@ function Checkoutitems({ id, image, title, quantity, price }) {
                   .fill()
                   .map((cur, i) =>
                     i + 1 !== quantity ? (
-                      <option value={i + 1}>{i + 1}</option>
+                      <option id={i} value={i + 1}>
+                        {i + 1}
+                      </option>
                     ) : (
                       ""
                     )
