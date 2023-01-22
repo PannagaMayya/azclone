@@ -25,6 +25,7 @@ function App() {
       if (user) {
         console.log(user.displayName);
         dispatch({ type: "SET_USER", user: user });
+        //dispatch({type:"GET_ADDRESS",address:""})
       } else {
         dispatch({ type: "SET_USER", user: null });
       }
@@ -79,12 +80,17 @@ function App() {
             }
           />
           <Route
-            path="/myorders/:id"
+            path="/myorders"
             element={
-              <>
-                <Header />
-                <Myorders />
-              </>
+              <NavigateComp
+                comp={
+                  <>
+                    <Header />
+                    <Myorders />
+                  </>
+                }
+                user={state.user ? false : true}
+              />
             }
           />
           <Route

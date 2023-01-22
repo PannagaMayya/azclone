@@ -39,11 +39,11 @@ function Header() {
             className="header__optionline1"
             style={{ marginLeft: "25px", marginBottom: "-8px" }}
           >
-            Hello
+            {state.address ? "Deliver to " + state.address.fullname : "Hello"}
           </span>
           <span className="header__optionline2">
             <LocationOnIcon className="header__locationzone" />
-            Select Your address
+            {state.address ? state.address.city : "Select Your address"}
           </span>
         </div>
       </div>
@@ -105,11 +105,12 @@ function Header() {
             </div>
           </div>
         </div>
-
-        <div className="header__option">
-          <span className="header__optionline1">Returns</span>
-          <span className="header__optionline2">& Orders</span>
-        </div>
+        <Link to={state.user && "/myorders"}>
+          <div className="header__option">
+            <span className="header__optionline1">Returns</span>
+            <span className="header__optionline2">& Orders</span>
+          </div>
+        </Link>
         <Link to="/checkout" style={{ textDecoration: "none" }}>
           <div className="header__cart">
             <ShoppingCartIcon className="header__shoppingcartlogo" />

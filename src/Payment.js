@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import "./Payment.css";
 import axios from "./response/axios";
+import { db } from "./appFirebase/firebase";
+import { doc, setDoc } from "firebase/firestore";
 import CreditCardIcon from "@mui/icons-material/CreditCard";
 import AccountBalanceIcon from "@mui/icons-material/AccountBalance";
 import CurrencyRupeeIcon from "@mui/icons-material/CurrencyRupee";
@@ -54,12 +56,40 @@ function Payment() {
         console.log(resp);
         setClientSec(resp.data.clientSecret);
 
-        const payload = await stripe
+        stripe
           .confirmCardPayment(resp.data.clientSecret, {
             payment_method: { card: elements.getElement(CardElement) },
           })
-          .then(({ paymentIntents }) => {
-            history(`/myorders/${resp.data.clientSecret}`, { replace: true });
+          .then((result) => {
+            console.log(result.paymentIntent.id, state.user?.uid);
+            const usersOrdersRef = doc(
+              db,
+              "users",
+              state.user?.uid,
+              "orders",
+              result.paymentIntent.id
+            );
+            setDoc(usersOrdersRef, {
+              cart: state.cart,
+              amount: result.paymentIntent.amount,
+              created: result.paymentIntent.created,
+            }).then(function () {
+              console.log("Orders Added");
+            });
+            const usersAddressRef = doc(
+              db,
+              "users",
+              state.user?.uid,
+              "address",
+              state.user?.uid
+            );
+            setDoc(usersAddressRef, {
+              address: state.address,
+            }).then(function () {
+              console.log("Address Added");
+            });
+            dispatch({ type: "EMPTY_CART" });
+            history("/myorders", { replace: true });
           });
       })();
     }
@@ -316,7 +346,7 @@ function Payment() {
       <div className={paymentLoading ? "payment_overlay" : "loading_none"}>
         <CircularProgress
           color="success"
-          style={{ position: "absolute", top: "300px" }}
+          style={{ position: "sticky", top: "300px" }}
         />
       </div>
     </div>

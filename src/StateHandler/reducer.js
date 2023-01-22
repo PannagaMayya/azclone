@@ -38,6 +38,8 @@ const reducer = (state, action) => {
       return { ...action.stateclear };
     case "SET_ADDRESS":
       return { ...state, address: action.address };
+    case "EMPTY_CART":
+      return { ...state, cart: [] };
     default:
       return state;
   }
