@@ -1,6 +1,7 @@
 .Items {
   display: flex;
   background-color: white;
+  min-width: 1000px;
 }
 .Items__banner {
   background-color: #232f3e;
@@ -26,7 +27,7 @@
   width: 85%;
   margin: 10px;
   padding: 10px;
-}
-.Items__rightrow {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  justify-content: center;
 }

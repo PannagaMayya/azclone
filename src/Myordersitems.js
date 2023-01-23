@@ -21,12 +21,18 @@ function Myordersitems({ id, item }) {
           </div>
         </div>
         <div className="myorders__header__childern">
+          <div className="myorders__header__childern__line1">PAYMENT TYPE</div>
+          <div className="myorders__header__childern__line2">
+            {id[0] === "1" ? "COD" : "CC"}
+          </div>
+        </div>
+        <div className="myorders__header__childern">
           <div className="myorders__header__childern__line1">ORDER ID</div>
           <div className="myorders__header__childern__line2">{id}</div>
         </div>
       </div>
       {item.cart.map((cur, ind) => (
-        <div className="myorderscard__body">
+        <div className="myorderscard__body" key={ind}>
           <div className="myorderscard__body_left">
             <img src={cur.image} alt="order"></img>
           </div>

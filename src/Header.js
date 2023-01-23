@@ -17,7 +17,10 @@ function Header() {
       .then(() => {
         console.log("Sign out Successfull");
         history("/login");
-        dispatch({ type: "SIGN_OUT", stateclear: { cart: [], user: null } });
+        dispatch({
+          type: "SIGN_OUT",
+          stateclear: { cart: [], user: null, address: null },
+        });
       })
       .catch((error) => {
         alert(error.message);
@@ -68,7 +71,7 @@ function Header() {
       <div className="header__child">
         <div className="header__option divpop">
           <span className="header__optionline1 ">
-            {state.user
+            {state.user?.displayName
               ? "Hello, " + state.user?.displayName.split(" ")[0]
               : "Hello, sign in"}
           </span>
@@ -105,7 +108,10 @@ function Header() {
             </div>
           </div>
         </div>
-        <Link to={state.user && "/myorders"}>
+        <Link
+          to={state.user ? "/myorders" : "/login"}
+          style={{ textDecoration: "none" }}
+        >
           <div className="header__option">
             <span className="header__optionline1">Returns</span>
             <span className="header__optionline2">& Orders</span>

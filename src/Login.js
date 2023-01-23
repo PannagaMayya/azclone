@@ -14,13 +14,16 @@ function Login() {
     setIsLoading(true);
     signin(auth, email, password)
       .then((info) => {
-        console.log(info);
         setIsLoading(true);
-        history("/");
+        setTimeout(() => {
+          history("/");
+        }, 4000);
         setIsLoading(false);
       })
       .catch((err) => {
-        setIsLoading(false);
+        setTimeout(() => {
+          setIsLoading(false);
+        }, 2000);
         setLogin({ ...login, password: "" });
         setErr(true);
       });

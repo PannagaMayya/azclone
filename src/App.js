@@ -9,6 +9,8 @@ import Signup from "./Signup";
 import Payment from "./Payment";
 import NavigateComp from "./NavigateComp";
 import Myorders from "./Myorders";
+import { db } from "./appFirebase/firebase";
+import { doc, getDoc } from "firebase/firestore";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { auth, manageuser } from "./appFirebase/firebase";
@@ -20,17 +22,33 @@ const stripePromise = loadStripe(
 function App() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
+
   useEffect(() => {
+    console.log(state);
     manageuser(auth, (user) => {
       if (user) {
-        console.log(user.displayName);
-        dispatch({ type: "SET_USER", user: user });
-        //dispatch({type:"GET_ADDRESS",address:""})
-      } else {
-        dispatch({ type: "SET_USER", user: null });
+        if (!state.user) {
+          dispatch({ type: "SET_USER", user: user });
+        }
+        if (state.user && !state.address) {
+          const addressref = doc(
+            db,
+            "users",
+            state.user?.uid,
+            "address",
+            state.user?.uid
+          );
+          getDoc(addressref).then((res) => {
+            if (res.data()) {
+              let address = res.data();
+
+              dispatch({ type: "SET_ADDRESS", address: address.address });
+            }
+          });
+        }
       }
     });
-  }, [dispatch]);
+  }, [state.user]);
   return (
     <BrowserRouter>
       <div className="app">

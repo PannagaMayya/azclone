@@ -11,10 +11,11 @@ function Signup() {
   const [signup, setSignup] = useState({ name: "", email: "", password: "" });
   const Signup = ({ name, email, password }) => {
     setErr(false);
+    setIsLoading(true);
     reg(auth, email, password)
       .then((info) => {
         console.log(info);
-        setIsLoading(true);
+
         updatename(info.user, {
           displayName: name,
         })
@@ -30,6 +31,7 @@ function Signup() {
       })
       .catch((err) => {
         setErr(true);
+        setIsLoading(false);
         setSignup({ ...signup, email: "", password: "" });
       });
   };

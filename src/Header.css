@@ -78,6 +78,7 @@
   z-index: 10;
   display: none;
   border-radius: 10px;
+  border: 1px solid #bbb;
 }
 .popover:hover {
   display: flex;

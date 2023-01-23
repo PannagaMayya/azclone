@@ -1,7 +1,8 @@
 .Item {
   display: flex;
   margin: 5px;
-  max-width: 300px;
+  width: 280px;
+  min-width: 250px;
   padding: 15px;
   flex-direction: column;
   align-items: center;
@@ -11,9 +12,9 @@
 }
 .Item > img {
   width: 70%;
-  height: 60%;
   object-fit: contain;
   margin-bottom: 10px;
+  flex: 0.7;
 }
 .to__cart {
   background-color: #ffd814;
@@ -28,6 +29,7 @@
 }
 .Item__info {
   margin-bottom: 20px;
+  flex: 0.3;
 }
 .Item__title:hover {
   color: #dfab3b;

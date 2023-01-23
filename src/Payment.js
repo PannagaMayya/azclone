@@ -21,7 +21,7 @@ function Payment() {
   // eslint-disable-next-line
   const [state, dispatch] = useStateValue();
   const [paymentLoading, setPaymentLoading] = useState(false);
-  const [err, setErr] = useState(null);
+  const [err, setErr] = useState(" ");
   const [clientsec, setClientSec] = useState(null);
   const [isFormEdit, setIsFormEdit] = useState(state.address ? false : true);
   const [card, setCard] = useState("CC");
@@ -46,52 +46,78 @@ function Payment() {
     setAddress({ ...address, [e.target.name]: e.target.value });
   };
   const handleFormPayment = async (e) => {
+    if (card === "CC") {
+      let cardValid = elements.getElement(CardElement);
+      console.log(cardValid._complete);
+      if (cardValid._complete) {
+        setErr(null);
+      } else {
+        setErr(err || "Please enter valid CC details");
+      }
+    }
     if (!(isFormEdit || state.cart.length === 0 || err)) {
       setPaymentLoading(true);
-      (async () => {
-        const resp = await axios({
-          method: "post",
-          url: `/payments/create?total=${(totalcost + deliveryFee) * 100}`,
-        });
-        console.log(resp);
-        setClientSec(resp.data.clientSecret);
-
-        stripe
-          .confirmCardPayment(resp.data.clientSecret, {
-            payment_method: { card: elements.getElement(CardElement) },
-          })
-          .then((result) => {
-            console.log(result.paymentIntent.id, state.user?.uid);
-            const usersOrdersRef = doc(
-              db,
-              "users",
-              state.user?.uid,
-              "orders",
-              result.paymentIntent.id
-            );
-            setDoc(usersOrdersRef, {
-              cart: state.cart,
-              amount: result.paymentIntent.amount,
-              created: result.paymentIntent.created,
-            }).then(function () {
-              console.log("Orders Added");
-            });
-            const usersAddressRef = doc(
-              db,
-              "users",
-              state.user?.uid,
-              "address",
-              state.user?.uid
-            );
-            setDoc(usersAddressRef, {
-              address: state.address,
-            }).then(function () {
-              console.log("Address Added");
-            });
-            dispatch({ type: "EMPTY_CART" });
-            history("/myorders", { replace: true });
+      if (card === "CC") {
+        (async () => {
+          const resp = await axios({
+            method: "post",
+            url: `/payments/create?total=${(totalcost + deliveryFee) * 100}`,
           });
-      })();
+          console.log(resp);
+          setClientSec(resp.data.clientSecret);
+
+          stripe
+            .confirmCardPayment(resp.data.clientSecret, {
+              payment_method: { card: elements.getElement(CardElement) },
+            })
+            .then((result) => {
+              const usersOrdersRef = doc(
+                db,
+                "users",
+                state.user?.uid,
+                "orders",
+                result.paymentIntent.id
+              );
+              setDoc(usersOrdersRef, {
+                cart: state.cart,
+                amount: result.paymentIntent.amount,
+                created: result.paymentIntent.created,
+              }).then(function () {
+                console.log("Orders Added");
+              });
+            });
+        })();
+      } else {
+        console.log("In");
+        const usersOrdersCODRef = doc(
+          db,
+          "users",
+          state.user?.uid,
+          "orders",
+          Date.now().toString()
+        );
+        setDoc(usersOrdersCODRef, {
+          cart: state.cart,
+          amount: (totalcost + deliveryFee) * 100,
+          created: Math.trunc(Date.now() / 1000),
+        }).then(function () {
+          console.log("Orders Added - COD");
+        });
+      }
+      const usersAddressRef = doc(
+        db,
+        "users",
+        state.user?.uid,
+        "address",
+        state.user?.uid
+      );
+      setDoc(usersAddressRef, {
+        address: state.address,
+      }).then(function () {
+        console.log("Address Added");
+      });
+      dispatch({ type: "EMPTY_CART" });
+      history("/myorders", { replace: true });
     }
   };
   const onChangeValue = (e) => {
@@ -101,10 +127,14 @@ function Payment() {
     } else {
       elements.getElement(CardElement).clear();
       setCard("CC");
+      setErr(" ");
     }
   };
   const handleCard = (e) => {
-    e.error ? setErr(e.error.message) : setErr(null);
+    e.complete ? setErr(null) : setErr(err || "Please enter valid CC details");
+    if (e.error) {
+      setErr(e.error.message);
+    }
   };
   return (
     <div className="payment">
@@ -224,6 +254,7 @@ function Payment() {
               {state.cart.length !== 0 ? (
                 state.cart.map((i, n) => (
                   <Checkoutitems
+                    key={i.id}
                     id={i.id}
                     image={i.image}
                     title={i.title}
@@ -346,7 +377,7 @@ function Payment() {
       <div className={paymentLoading ? "payment_overlay" : "loading_none"}>
         <CircularProgress
           color="success"
-          style={{ position: "sticky", top: "300px" }}
+          style={{ position: "sticky", top: "300px", color: "#FF9900" }}
         />
       </div>
     </div>
