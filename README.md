@@ -1,9 +1,12 @@
 
 # Amazon Clone Website
-
+Live Demo : https://azclone-c28e8.web.app/
 ## Screenshots
 ### Home Page
 <img width="650" height="320" alt="Home_page" title="Home Page" src="https://user-images.githubusercontent.com/120668968/212167751-3874fbe5-0a3a-4c6d-b1cb-abb925842329.png">
+
+### Items Page
+<img width="650" height="320" alt="Items_page" title="Items_page" src="https://user-images.githubusercontent.com/120668968/214099088-0d6d8622-662e-489e-943e-5ca91de199e3.png">
 
 ### My Cart Page
 <img width="650" height="300" alt="Cart_page" title="Cart Page" src="https://user-images.githubusercontent.com/120668968/212166521-f792d7f6-ec52-4415-94c2-731f77a4ecc0.png">
@@ -13,6 +16,14 @@
 
 ### Sign-Up Page
 <img width="650" height="320" alt="SignUp_page" title="Signup Page" src="https://user-images.githubusercontent.com/120668968/212167601-62c7bbb3-0200-474d-82ef-48b9a5ebca8c.png">
+
+### Payment Page
+<img width="650" height="320" alt="Payment_page" title="Payment_page" src="https://user-images.githubusercontent.com/120668968/214098209-1f6a9779-3319-4eef-89d7-fbdbbe61de08.png">
+
+### Orders Page
+<img width="650" height="320" alt="Orders_page" title="Orders_page" src="https://user-images.githubusercontent.com/120668968/214098692-49302048-0574-4bc0-8f05-c8503dab06ee.png">
+
+
 
 # Getting Started with Create React App
 
