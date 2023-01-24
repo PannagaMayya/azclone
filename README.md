@@ -5,6 +5,12 @@ Live Demo : https://azclone-c28e8.web.app/
 ### Home Page
 <img width="650" height="320" alt="Home_page" title="Home Page" src="https://user-images.githubusercontent.com/120668968/212167751-3874fbe5-0a3a-4c6d-b1cb-abb925842329.png">
 
+#### Search Feature
+<img width="650" height="320" alt="Search_feature" title="Searcg Feature" src="https://user-images.githubusercontent.com/120668968/214342598-c9131a0c-1690-4454-b737-c08ee233ad94.png">
+
+#### Carousel Feature
+<img width="650" height="220"  alt="Carousel" title="Carousel" src="https://user-images.githubusercontent.com/120668968/214342923-34910605-9477-498e-bade-baa5ffc1e016.png">
+
 ### Items Page
 <img width="650" height="320" alt="Items_page" title="Items_page" src="https://user-images.githubusercontent.com/120668968/214099088-0d6d8622-662e-489e-943e-5ca91de199e3.png">
 
@@ -32,6 +38,9 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Available Scripts
 
 In the project directory, you can run:
+
+### `npm install`
+Installs required libraries for the app
 
 ### `npm start`
 
