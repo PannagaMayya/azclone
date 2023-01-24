@@ -1,7 +1,8 @@
 import React from "react";
 import "./Product.css";
 import { Link } from "react-router-dom";
-function Product({ heading, imageUrl, linkText, link }) {
+
+function Product({ heading, imageUrl, linkText }) {
   return (
     <div className="product">
       <div className="product__info">

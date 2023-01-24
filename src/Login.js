@@ -59,6 +59,7 @@ function Login() {
             type="email"
             value={login.email}
             onChange={(e) => setLogin({ ...login, email: e.target.value })}
+            placeholder="Demo User: Test@Test.com"
             required
           ></input>
           <h5 style={{ fontWeight: 700 }}>Password</h5>
@@ -66,6 +67,7 @@ function Login() {
             type="password"
             value={login.password}
             onChange={(e) => setLogin({ ...login, password: e.target.value })}
+            placeholder=" Demo Password: Test@Test.com"
             required
           ></input>
           <button className="login__signin" type="submit">

@@ -4,6 +4,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import Search from "./Search";
+import { searchitemtoList } from "./StateHandler/searchitemtoList";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signout } from "./appFirebase/firebase";
@@ -33,13 +34,22 @@ function Header() {
     }
   };
   const setSearchtitle = (val) => {
-    dispatch({ type: "SEARCH_ITEM", val: val });
+    dispatch({ type: "SEARCH_ITEM", val: [val] });
     history("/items");
     setSearch(val.title);
   };
   return (
     <div className="header">
-      <Link to="/">
+      <Link
+        to="/"
+        onClick={() => {
+          dispatch({
+            type: "SEARCH_ITEM",
+            val: searchitemtoList(""),
+          });
+          setSearch("");
+        }}
+      >
         <div className="header__logo">
           <img
             src="https://pngimg.com/uploads/amazon/amazon_PNG11.png"
@@ -90,7 +100,16 @@ function Header() {
         <div className="searchpopover" id="searchpopover">
           <Search searchitem={search} setSearchtitle={setSearchtitle} />
         </div>
-        <Link to="/items" className="header__searchlogo">
+        <Link
+          to="/items"
+          className="header__searchlogo"
+          onClick={() => {
+            dispatch({
+              type: "SEARCH_ITEM",
+              val: searchitemtoList(search),
+            });
+          }}
+        >
           <SearchIcon />
         </Link>
       </div>
@@ -137,13 +156,30 @@ function Header() {
         <Link
           to={state.user ? "/myorders" : "/login"}
           style={{ textDecoration: "none" }}
+          onClick={() => {
+            dispatch({
+              type: "SEARCH_ITEM",
+              val: searchitemtoList(""),
+            });
+            setSearch("");
+          }}
         >
           <div className="header__option">
             <span className="header__optionline1">Returns</span>
             <span className="header__optionline2">& Orders</span>
           </div>
         </Link>
-        <Link to="/checkout" style={{ textDecoration: "none" }}>
+        <Link
+          to="/checkout"
+          style={{ textDecoration: "none" }}
+          onClick={() => {
+            dispatch({
+              type: "SEARCH_ITEM",
+              val: searchitemtoList(""),
+            });
+            setSearch("");
+          }}
+        >
           <div className="header__cart">
             <ShoppingCartIcon className="header__shoppingcartlogo" />
             <span className="header__optionline2 header__shoppingtemcount">

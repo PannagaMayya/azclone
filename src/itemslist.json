@@ -19,7 +19,7 @@
       },
       {
         "id": "40928",
-        "title": "AppIe Z-Mac with 4K Display (15 inches/39.6cm, Silver)",
+        "title": "Apple Z-Mac with 4K Display (15 inches/39.6cm, Silver)",
         "image": "https://m.media-amazon.com/images/I/710AOd78HAL._SX679_.jpg",
         "star": 4,
         "price": 123999,
@@ -96,6 +96,30 @@
         "star": 4,
         "price": 1999,
         "origprice": 3000
+      },
+      {
+        "id": "11110",
+        "title": "Eoren 2 Star Direct Cool Single Door Refrigerator , Pep Blue, Large Vegetable Tray, 2022 Model)",
+        "image": "https://m.media-amazon.com/images/I/618ikeOHFaL._SX679_.jpg",
+        "star": 4,
+        "price": 12999,
+        "origprice": 15000
+      },
+      {
+        "id": "61110",
+        "title": "Studds Urban Black with Black Strip Open Face Helmet (L)",
+        "image": "https://m.media-amazon.com/images/I/71XMjBAIKNL._AC_UL480_QL65_.jpg",
+        "star": 4,
+        "price": 999,
+        "origprice": 1200
+      },
+      {
+        "id": "13922",
+        "title": "Furious Brand - Baby Wash Cloths, Pack of 6",
+        "image": "https://m.media-amazon.com/images/I/81E1MmJEtEL._SX679_.jpg",
+        "star": 5,
+        "price": 199,
+        "origprice": 260
       }
     ]
   }

@@ -1,14 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Items.css";
 import Item from "./Item";
-import data from "./itemslist.json";
+import { searchitemtoList } from "./StateHandler/searchitemtoList";
 import { useStateValue } from "./StateHandler/Stateprovider";
 function Items() {
   const [state, dispatch] = useStateValue();
-  const [localstate, setLocalState] = useState(data.data.itemslist);
-  useEffect(() => {
-    console.log(state, localstate);
-  }, []);
+  const [localstate, setLocalState] = useState(searchitemtoList(""));
+
   return (
     <>
       <div className="Items__banner">
@@ -29,29 +27,36 @@ function Items() {
           <p>Cameras & Photography</p>
         </div>
         <div className="Items__right">
-          {state.search.length > 0
-            ? state.search.map((cur, i) => (
-                <Item
-                  key={cur.id}
-                  id={cur.id}
-                  title={cur.title}
-                  image={cur.image}
-                  star={cur.star}
-                  price={cur.price}
-                  origprice={cur.origprice}
-                />
-              ))
-            : localstate.map((cur, i) => (
-                <Item
-                  key={cur.id}
-                  id={cur.id}
-                  title={cur.title}
-                  image={cur.image}
-                  star={cur.star}
-                  price={cur.price}
-                  origprice={cur.origprice}
-                />
-              ))}
+          {state.search === null ? (
+            localstate.map((cur, i) => (
+              <Item
+                key={cur.id}
+                id={cur.id}
+                title={cur.title}
+                image={cur.image}
+                star={cur.star}
+                price={cur.price}
+                origprice={cur.origprice}
+              />
+            ))
+          ) : state.search.length > 0 ? (
+            state.search.map((cur, i) => (
+              <Item
+                key={cur.id}
+                id={cur.id}
+                title={cur.title}
+                image={cur.image}
+                star={cur.star}
+                price={cur.price}
+                origprice={cur.origprice}
+              />
+            ))
+          ) : (
+            <div>
+              <h3>No results for the searched keyword.</h3>
+              <p> Try checking your spelling or use more general terms</p>
+            </div>
+          )}
         </div>
       </div>
     </>

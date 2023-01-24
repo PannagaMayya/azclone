@@ -1,14 +1,10 @@
 import React from "react";
 import "./Search.css";
-import itemslist from "./itemslist.json";
-import { useNavigate } from "react-router-dom";
+import { searchitemtoList } from "./StateHandler/searchitemtoList";
 function Search({ searchitem, setSearchtitle }) {
-  const history = useNavigate();
   let newlist = [];
   if (searchitem) {
-    newlist = itemslist.data.itemslist.filter((cur) =>
-      cur.title.toLowerCase().includes(searchitem.toLowerCase())
-    );
+    newlist = searchitemtoList(searchitem);
   }
   return (
     <div className="Search_popover">
@@ -22,10 +18,12 @@ function Search({ searchitem, setSearchtitle }) {
             </div>
           ))
         ) : (
-          <div>Not found</div>
+          <div style={{ color: "Red", fontWeight: "600" }}>Not found!!!</div>
         )
       ) : (
-        <div>Type Something....</div>
+        <div style={{ color: "green", fontWeight: "400" }}>
+          Type Something....
+        </div>
       )}
     </div>
   );

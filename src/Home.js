@@ -19,8 +19,17 @@ function Home() {
         <ArrowForwardIosIcon
           className="carosel__ArrowF"
           sx={{ fontSize: 60 }}
+          onClick={() => {
+            setInd(ind === 3 ? 0 : ind + 1);
+          }}
         />
-        <ArrowBackIosIcon className="carosel__ArrowB" sx={{ fontSize: 60 }} />
+        <ArrowBackIosIcon
+          className="carosel__ArrowB"
+          sx={{ fontSize: 60 }}
+          onClick={() => {
+            setInd(ind === 0 ? 3 : ind - 1);
+          }}
+        />
         <div className="banner">
           <div
             className="banner_carousel"
