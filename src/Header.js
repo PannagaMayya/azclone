@@ -3,6 +3,7 @@ import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
+import Search from "./Search";
 import { useStateValue } from "./StateHandler/Stateprovider";
 import { Link, useNavigate } from "react-router-dom";
 import { auth, signout } from "./appFirebase/firebase";
@@ -19,12 +20,22 @@ function Header() {
         history("/login");
         dispatch({
           type: "SIGN_OUT",
-          stateclear: { cart: [], user: null, address: null },
+          stateclear: { cart: [], user: null, address: null, search: null },
         });
       })
       .catch((error) => {
         alert(error.message);
       });
+  };
+  const searchPopOver = (prop) => {
+    if (document.getElementById("searchpopover")) {
+      document.getElementById("searchpopover").style.display = prop;
+    }
+  };
+  const setSearchtitle = (val) => {
+    dispatch({ type: "SEARCH_ITEM", val: val });
+    history("/items");
+    setSearch(val.title);
   };
   return (
     <div className="header">
@@ -64,9 +75,24 @@ function Header() {
           className="header__search_inp"
           type="text"
           value={search}
-          onChange={(e) => setSearch(e.target.value)}
+          onChange={(e) => {
+            setSearch(e.target.value);
+          }}
+          onBlur={(e) => {
+            setTimeout(() => {
+              searchPopOver("none");
+            }, 1000);
+          }}
+          onFocus={(e) => {
+            searchPopOver("block");
+          }}
         />
-        <SearchIcon className="header__searchlogo" />
+        <div className="searchpopover" id="searchpopover">
+          <Search searchitem={search} setSearchtitle={setSearchtitle} />
+        </div>
+        <Link to="/items" className="header__searchlogo">
+          <SearchIcon />
+        </Link>
       </div>
       <div className="header__child">
         <div className="header__option divpop">

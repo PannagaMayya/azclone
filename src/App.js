@@ -24,7 +24,6 @@ function App() {
   const [state, dispatch] = useStateValue();
 
   useEffect(() => {
-    console.log(state);
     manageuser(auth, (user) => {
       if (user) {
         if (!state.user) {

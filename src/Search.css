@@ -1,0 +1,14 @@
+.Search_popover {
+  padding: 10px;
+}
+.Search_popover > div {
+  font-size: 15px;
+  font-weight: 400;
+  margin: 10px 0px;
+  padding: 2px 5px;
+}
+.Search_popover > div:hover {
+  background-color: rgb(238, 233, 233);
+  font-weight: 500;
+  cursor: pointer;
+}

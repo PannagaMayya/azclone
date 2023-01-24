@@ -13,6 +13,16 @@
   align-items: center;
   flex: 1;
 }
+.searchpopover {
+  position: fixed;
+  z-index: 3;
+  top: 10vh;
+  left: 430px;
+  border: 1px solid #bbb;
+  background-color: white;
+  display: none;
+  width: 500px;
+}
 
 .header__logo > img {
   width: 100px;
@@ -48,8 +58,10 @@
   padding: 5px;
   height: 30px !important;
   cursor: pointer;
+  color: black;
   background-color: #ffb868;
   border-radius: 0px 4px 4px 0px;
+  text-decoration: none;
 }
 .header__child {
   display: flex;

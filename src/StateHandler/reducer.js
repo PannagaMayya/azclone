@@ -2,6 +2,7 @@ export const initialState = {
   cart: [],
   user: null,
   address: null,
+  search: [],
 };
 const reducer = (state, action) => {
   switch (action.type) {
@@ -40,6 +41,8 @@ const reducer = (state, action) => {
       return { ...state, address: action.address };
     case "EMPTY_CART":
       return { ...state, cart: [] };
+    case "SEARCH_ITEM":
+      return { ...state, search: [action.val] };
     default:
       return state;
   }
