@@ -3,6 +3,9 @@
   margin-bottom: -250px;
   mask-image: linear-gradient(black, transparent);
 }
+.banner > img {
+  object-fit: contain;
+}
 .home__banner {
   width: 100%;
   height: fit-content;
@@ -27,17 +30,17 @@
 }
 .carosel__ArrowF {
   z-index: 3;
-  position: absolute;
+  position: fixed;
   top: 80px;
-  right: 10px;
+  right: 20px;
   color: black;
   padding: 90px 12px;
 }
 .carosel__ArrowB {
   z-index: 3;
-  position: absolute;
+  position: fixed;
   top: 80px;
-  left: 10px;
+  left: 20px;
   color: black;
   padding: 90px 12px;
 }
