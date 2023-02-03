@@ -1,14 +1,13 @@
 .banner {
   overflow: hidden;
-  margin-bottom: -250px;
+  margin-bottom: -100px;
+  max-height: 60vh;
   mask-image: linear-gradient(black, transparent);
 }
-.banner > img {
-  object-fit: contain;
-}
+
 .home__banner {
+  max-height: 40%;
   width: 100%;
-  height: fit-content;
 }
 .banner_carousel {
   display: inline-flex;
@@ -24,6 +23,7 @@
 }
 .home__row {
   display: flex;
+
   justify-content: center;
   flex-flow: wrap;
   z-index: 1;

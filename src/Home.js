@@ -39,6 +39,7 @@ function Home() {
               src="https://images-na.ssl-images-amazon.com/images/G/15/digital/video/merch/Other/BRND_MTH21_SADLPDesktop_1453x363_Final_nolocale_PVD7436_Canada.jpg"
               alt="banner1"
               className="home__banner"
+              style={{ maxHeight: "350px" }}
             ></img>
 
             <img
